@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+<section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center mb-3 pb-4">
+        <div class="innter-form">
+            <div class="row w-450" >
+                <div class=" w-35">
+                  <div class="card">
+                    <div class="card-body bg-dark">
+                      <h5 class="card-title ">Choose new</h5>
+                      <p class="card-text">Create a new order</p>
+                      <a href="/order/add" class="btn btn-primary">New order</a>
+                    </div>
+                  </div>
+                </div>
+                {% if user.favorites.all|length > 0 %}
+                <div class="w-35 ml-5">   
+                  <div class="card ">
+                    <div class="card-body bg-dark">
+                      <h5 class="card-title ">Re-order last pizza</h5>
+                      <p class="card-text">Enjoy again it</p>
+                      <a href="/purchase/{{last.id}}" class="btn btn-primary">Reorder</a>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% if user.orders.all|length > 1 %}
+                <div class="w-35 ml-5">
+                    <div class="card">
+                      <div class="card-body bg-dark">
+                        <h5 class="card-title">Surpise MEE ,new</h5>
+                        <p class="card-text">Let Us Choose for you</p>
+                        <a href="/randompizza" class="btn btn-primary">Let'see</a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              {% endif %}
+              
+            </div>
+        
+      </div>
+      
+      <div class="row justify-content-center mb-5 pb-3">
+    </div>
+      
+    </div>
+  </section>
+  <!-- <script>
+    $(document).ready(function(){
+        $('.check').click(function() {
+            $('.check').not(this).prop('checked', false);
+        });
+    });
+    </script> -->
+<script>
+        $("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+</script>
+  
+{% endblock %}
